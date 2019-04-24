@@ -1,6 +1,6 @@
 # Blaze Language and Virtual Machine
 
-#### General Purpose Programming Language and Virtual Machine for MultiCore Processors and General Purpose GPU (GPGPU) Computing.
+#### General Purpose Programming Language and Virtual Machine for Multi-Core Processors and General Purpose GPU (GPGPU) Computing.
 
 Blaze will be a compiled and interpreted programming language. Blaze Compiler will generate Blaze Bytecode (Intermediate Language). Blaze VM will execute the Bytecode at runtime. Blaze VM will be a Stack based Virtual Machine implementation.
 
