@@ -16,11 +16,9 @@
 
 #include<iostream>
 #include <sys/stat.h>
-#include <filesystem>
 #include "types.h"
 
 using namespace std;
-namespace fs = std::filesystem;
 
 class FilePathManager {
     public:
