@@ -42,15 +42,6 @@ public:
   virtual void enterClassDeclaration(BlazeParser::ClassDeclarationContext * /*ctx*/) override { }
   virtual void exitClassDeclaration(BlazeParser::ClassDeclarationContext * /*ctx*/) override { }
 
-  virtual void enterTypeParameters(BlazeParser::TypeParametersContext * /*ctx*/) override { }
-  virtual void exitTypeParameters(BlazeParser::TypeParametersContext * /*ctx*/) override { }
-
-  virtual void enterTypeParameter(BlazeParser::TypeParameterContext * /*ctx*/) override { }
-  virtual void exitTypeParameter(BlazeParser::TypeParameterContext * /*ctx*/) override { }
-
-  virtual void enterTypeBound(BlazeParser::TypeBoundContext * /*ctx*/) override { }
-  virtual void exitTypeBound(BlazeParser::TypeBoundContext * /*ctx*/) override { }
-
   virtual void enterEnumDeclaration(BlazeParser::EnumDeclarationContext * /*ctx*/) override { }
   virtual void exitEnumDeclaration(BlazeParser::EnumDeclarationContext * /*ctx*/) override { }
 
@@ -87,12 +78,6 @@ public:
   virtual void enterTypeTypeOrVoid(BlazeParser::TypeTypeOrVoidContext * /*ctx*/) override { }
   virtual void exitTypeTypeOrVoid(BlazeParser::TypeTypeOrVoidContext * /*ctx*/) override { }
 
-  virtual void enterGenericMethodDeclaration(BlazeParser::GenericMethodDeclarationContext * /*ctx*/) override { }
-  virtual void exitGenericMethodDeclaration(BlazeParser::GenericMethodDeclarationContext * /*ctx*/) override { }
-
-  virtual void enterGenericConstructorDeclaration(BlazeParser::GenericConstructorDeclarationContext * /*ctx*/) override { }
-  virtual void exitGenericConstructorDeclaration(BlazeParser::GenericConstructorDeclarationContext * /*ctx*/) override { }
-
   virtual void enterConstructorDeclaration(BlazeParser::ConstructorDeclarationContext * /*ctx*/) override { }
   virtual void exitConstructorDeclaration(BlazeParser::ConstructorDeclarationContext * /*ctx*/) override { }
 
@@ -116,9 +101,6 @@ public:
 
   virtual void enterInterfaceMethodModifier(BlazeParser::InterfaceMethodModifierContext * /*ctx*/) override { }
   virtual void exitInterfaceMethodModifier(BlazeParser::InterfaceMethodModifierContext * /*ctx*/) override { }
-
-  virtual void enterGenericInterfaceMethodDeclaration(BlazeParser::GenericInterfaceMethodDeclarationContext * /*ctx*/) override { }
-  virtual void exitGenericInterfaceMethodDeclaration(BlazeParser::GenericInterfaceMethodDeclarationContext * /*ctx*/) override { }
 
   virtual void enterVariableDeclarators(BlazeParser::VariableDeclaratorsContext * /*ctx*/) override { }
   virtual void exitVariableDeclarators(BlazeParser::VariableDeclaratorsContext * /*ctx*/) override { }
@@ -167,45 +149,6 @@ public:
 
   virtual void enterFloatLiteral(BlazeParser::FloatLiteralContext * /*ctx*/) override { }
   virtual void exitFloatLiteral(BlazeParser::FloatLiteralContext * /*ctx*/) override { }
-
-  virtual void enterAnnotation(BlazeParser::AnnotationContext * /*ctx*/) override { }
-  virtual void exitAnnotation(BlazeParser::AnnotationContext * /*ctx*/) override { }
-
-  virtual void enterElementValuePairs(BlazeParser::ElementValuePairsContext * /*ctx*/) override { }
-  virtual void exitElementValuePairs(BlazeParser::ElementValuePairsContext * /*ctx*/) override { }
-
-  virtual void enterElementValuePair(BlazeParser::ElementValuePairContext * /*ctx*/) override { }
-  virtual void exitElementValuePair(BlazeParser::ElementValuePairContext * /*ctx*/) override { }
-
-  virtual void enterElementValue(BlazeParser::ElementValueContext * /*ctx*/) override { }
-  virtual void exitElementValue(BlazeParser::ElementValueContext * /*ctx*/) override { }
-
-  virtual void enterElementValueArrayInitializer(BlazeParser::ElementValueArrayInitializerContext * /*ctx*/) override { }
-  virtual void exitElementValueArrayInitializer(BlazeParser::ElementValueArrayInitializerContext * /*ctx*/) override { }
-
-  virtual void enterAnnotationTypeDeclaration(BlazeParser::AnnotationTypeDeclarationContext * /*ctx*/) override { }
-  virtual void exitAnnotationTypeDeclaration(BlazeParser::AnnotationTypeDeclarationContext * /*ctx*/) override { }
-
-  virtual void enterAnnotationTypeBody(BlazeParser::AnnotationTypeBodyContext * /*ctx*/) override { }
-  virtual void exitAnnotationTypeBody(BlazeParser::AnnotationTypeBodyContext * /*ctx*/) override { }
-
-  virtual void enterAnnotationTypeElementDeclaration(BlazeParser::AnnotationTypeElementDeclarationContext * /*ctx*/) override { }
-  virtual void exitAnnotationTypeElementDeclaration(BlazeParser::AnnotationTypeElementDeclarationContext * /*ctx*/) override { }
-
-  virtual void enterAnnotationTypeElementRest(BlazeParser::AnnotationTypeElementRestContext * /*ctx*/) override { }
-  virtual void exitAnnotationTypeElementRest(BlazeParser::AnnotationTypeElementRestContext * /*ctx*/) override { }
-
-  virtual void enterAnnotationMethodOrConstantRest(BlazeParser::AnnotationMethodOrConstantRestContext * /*ctx*/) override { }
-  virtual void exitAnnotationMethodOrConstantRest(BlazeParser::AnnotationMethodOrConstantRestContext * /*ctx*/) override { }
-
-  virtual void enterAnnotationMethodRest(BlazeParser::AnnotationMethodRestContext * /*ctx*/) override { }
-  virtual void exitAnnotationMethodRest(BlazeParser::AnnotationMethodRestContext * /*ctx*/) override { }
-
-  virtual void enterAnnotationConstantRest(BlazeParser::AnnotationConstantRestContext * /*ctx*/) override { }
-  virtual void exitAnnotationConstantRest(BlazeParser::AnnotationConstantRestContext * /*ctx*/) override { }
-
-  virtual void enterDefaultValue(BlazeParser::DefaultValueContext * /*ctx*/) override { }
-  virtual void exitDefaultValue(BlazeParser::DefaultValueContext * /*ctx*/) override { }
 
   virtual void enterBlock(BlazeParser::BlockContext * /*ctx*/) override { }
   virtual void exitBlock(BlazeParser::BlockContext * /*ctx*/) override { }
@@ -267,15 +210,6 @@ public:
   virtual void enterExpression(BlazeParser::ExpressionContext * /*ctx*/) override { }
   virtual void exitExpression(BlazeParser::ExpressionContext * /*ctx*/) override { }
 
-  virtual void enterLambdaExpression(BlazeParser::LambdaExpressionContext * /*ctx*/) override { }
-  virtual void exitLambdaExpression(BlazeParser::LambdaExpressionContext * /*ctx*/) override { }
-
-  virtual void enterLambdaParameters(BlazeParser::LambdaParametersContext * /*ctx*/) override { }
-  virtual void exitLambdaParameters(BlazeParser::LambdaParametersContext * /*ctx*/) override { }
-
-  virtual void enterLambdaBody(BlazeParser::LambdaBodyContext * /*ctx*/) override { }
-  virtual void exitLambdaBody(BlazeParser::LambdaBodyContext * /*ctx*/) override { }
-
   virtual void enterPrimary(BlazeParser::PrimaryContext * /*ctx*/) override { }
   virtual void exitPrimary(BlazeParser::PrimaryContext * /*ctx*/) override { }
 
@@ -300,15 +234,6 @@ public:
   virtual void enterExplicitGenericInvocation(BlazeParser::ExplicitGenericInvocationContext * /*ctx*/) override { }
   virtual void exitExplicitGenericInvocation(BlazeParser::ExplicitGenericInvocationContext * /*ctx*/) override { }
 
-  virtual void enterTypeArgumentsOrDiamond(BlazeParser::TypeArgumentsOrDiamondContext * /*ctx*/) override { }
-  virtual void exitTypeArgumentsOrDiamond(BlazeParser::TypeArgumentsOrDiamondContext * /*ctx*/) override { }
-
-  virtual void enterNonWildcardTypeArgumentsOrDiamond(BlazeParser::NonWildcardTypeArgumentsOrDiamondContext * /*ctx*/) override { }
-  virtual void exitNonWildcardTypeArgumentsOrDiamond(BlazeParser::NonWildcardTypeArgumentsOrDiamondContext * /*ctx*/) override { }
-
-  virtual void enterNonWildcardTypeArguments(BlazeParser::NonWildcardTypeArgumentsContext * /*ctx*/) override { }
-  virtual void exitNonWildcardTypeArguments(BlazeParser::NonWildcardTypeArgumentsContext * /*ctx*/) override { }
-
   virtual void enterTypeList(BlazeParser::TypeListContext * /*ctx*/) override { }
   virtual void exitTypeList(BlazeParser::TypeListContext * /*ctx*/) override { }
 
@@ -317,9 +242,6 @@ public:
 
   virtual void enterPrimitiveType(BlazeParser::PrimitiveTypeContext * /*ctx*/) override { }
   virtual void exitPrimitiveType(BlazeParser::PrimitiveTypeContext * /*ctx*/) override { }
-
-  virtual void enterTypeArguments(BlazeParser::TypeArgumentsContext * /*ctx*/) override { }
-  virtual void exitTypeArguments(BlazeParser::TypeArgumentsContext * /*ctx*/) override { }
 
   virtual void enterSuperSuffix(BlazeParser::SuperSuffixContext * /*ctx*/) override { }
   virtual void exitSuperSuffix(BlazeParser::SuperSuffixContext * /*ctx*/) override { }

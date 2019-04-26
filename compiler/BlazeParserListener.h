@@ -40,15 +40,6 @@ public:
   virtual void enterClassDeclaration(BlazeParser::ClassDeclarationContext *ctx) = 0;
   virtual void exitClassDeclaration(BlazeParser::ClassDeclarationContext *ctx) = 0;
 
-  virtual void enterTypeParameters(BlazeParser::TypeParametersContext *ctx) = 0;
-  virtual void exitTypeParameters(BlazeParser::TypeParametersContext *ctx) = 0;
-
-  virtual void enterTypeParameter(BlazeParser::TypeParameterContext *ctx) = 0;
-  virtual void exitTypeParameter(BlazeParser::TypeParameterContext *ctx) = 0;
-
-  virtual void enterTypeBound(BlazeParser::TypeBoundContext *ctx) = 0;
-  virtual void exitTypeBound(BlazeParser::TypeBoundContext *ctx) = 0;
-
   virtual void enterEnumDeclaration(BlazeParser::EnumDeclarationContext *ctx) = 0;
   virtual void exitEnumDeclaration(BlazeParser::EnumDeclarationContext *ctx) = 0;
 
@@ -85,12 +76,6 @@ public:
   virtual void enterTypeTypeOrVoid(BlazeParser::TypeTypeOrVoidContext *ctx) = 0;
   virtual void exitTypeTypeOrVoid(BlazeParser::TypeTypeOrVoidContext *ctx) = 0;
 
-  virtual void enterGenericMethodDeclaration(BlazeParser::GenericMethodDeclarationContext *ctx) = 0;
-  virtual void exitGenericMethodDeclaration(BlazeParser::GenericMethodDeclarationContext *ctx) = 0;
-
-  virtual void enterGenericConstructorDeclaration(BlazeParser::GenericConstructorDeclarationContext *ctx) = 0;
-  virtual void exitGenericConstructorDeclaration(BlazeParser::GenericConstructorDeclarationContext *ctx) = 0;
-
   virtual void enterConstructorDeclaration(BlazeParser::ConstructorDeclarationContext *ctx) = 0;
   virtual void exitConstructorDeclaration(BlazeParser::ConstructorDeclarationContext *ctx) = 0;
 
@@ -114,9 +99,6 @@ public:
 
   virtual void enterInterfaceMethodModifier(BlazeParser::InterfaceMethodModifierContext *ctx) = 0;
   virtual void exitInterfaceMethodModifier(BlazeParser::InterfaceMethodModifierContext *ctx) = 0;
-
-  virtual void enterGenericInterfaceMethodDeclaration(BlazeParser::GenericInterfaceMethodDeclarationContext *ctx) = 0;
-  virtual void exitGenericInterfaceMethodDeclaration(BlazeParser::GenericInterfaceMethodDeclarationContext *ctx) = 0;
 
   virtual void enterVariableDeclarators(BlazeParser::VariableDeclaratorsContext *ctx) = 0;
   virtual void exitVariableDeclarators(BlazeParser::VariableDeclaratorsContext *ctx) = 0;
@@ -165,45 +147,6 @@ public:
 
   virtual void enterFloatLiteral(BlazeParser::FloatLiteralContext *ctx) = 0;
   virtual void exitFloatLiteral(BlazeParser::FloatLiteralContext *ctx) = 0;
-
-  virtual void enterAnnotation(BlazeParser::AnnotationContext *ctx) = 0;
-  virtual void exitAnnotation(BlazeParser::AnnotationContext *ctx) = 0;
-
-  virtual void enterElementValuePairs(BlazeParser::ElementValuePairsContext *ctx) = 0;
-  virtual void exitElementValuePairs(BlazeParser::ElementValuePairsContext *ctx) = 0;
-
-  virtual void enterElementValuePair(BlazeParser::ElementValuePairContext *ctx) = 0;
-  virtual void exitElementValuePair(BlazeParser::ElementValuePairContext *ctx) = 0;
-
-  virtual void enterElementValue(BlazeParser::ElementValueContext *ctx) = 0;
-  virtual void exitElementValue(BlazeParser::ElementValueContext *ctx) = 0;
-
-  virtual void enterElementValueArrayInitializer(BlazeParser::ElementValueArrayInitializerContext *ctx) = 0;
-  virtual void exitElementValueArrayInitializer(BlazeParser::ElementValueArrayInitializerContext *ctx) = 0;
-
-  virtual void enterAnnotationTypeDeclaration(BlazeParser::AnnotationTypeDeclarationContext *ctx) = 0;
-  virtual void exitAnnotationTypeDeclaration(BlazeParser::AnnotationTypeDeclarationContext *ctx) = 0;
-
-  virtual void enterAnnotationTypeBody(BlazeParser::AnnotationTypeBodyContext *ctx) = 0;
-  virtual void exitAnnotationTypeBody(BlazeParser::AnnotationTypeBodyContext *ctx) = 0;
-
-  virtual void enterAnnotationTypeElementDeclaration(BlazeParser::AnnotationTypeElementDeclarationContext *ctx) = 0;
-  virtual void exitAnnotationTypeElementDeclaration(BlazeParser::AnnotationTypeElementDeclarationContext *ctx) = 0;
-
-  virtual void enterAnnotationTypeElementRest(BlazeParser::AnnotationTypeElementRestContext *ctx) = 0;
-  virtual void exitAnnotationTypeElementRest(BlazeParser::AnnotationTypeElementRestContext *ctx) = 0;
-
-  virtual void enterAnnotationMethodOrConstantRest(BlazeParser::AnnotationMethodOrConstantRestContext *ctx) = 0;
-  virtual void exitAnnotationMethodOrConstantRest(BlazeParser::AnnotationMethodOrConstantRestContext *ctx) = 0;
-
-  virtual void enterAnnotationMethodRest(BlazeParser::AnnotationMethodRestContext *ctx) = 0;
-  virtual void exitAnnotationMethodRest(BlazeParser::AnnotationMethodRestContext *ctx) = 0;
-
-  virtual void enterAnnotationConstantRest(BlazeParser::AnnotationConstantRestContext *ctx) = 0;
-  virtual void exitAnnotationConstantRest(BlazeParser::AnnotationConstantRestContext *ctx) = 0;
-
-  virtual void enterDefaultValue(BlazeParser::DefaultValueContext *ctx) = 0;
-  virtual void exitDefaultValue(BlazeParser::DefaultValueContext *ctx) = 0;
 
   virtual void enterBlock(BlazeParser::BlockContext *ctx) = 0;
   virtual void exitBlock(BlazeParser::BlockContext *ctx) = 0;
@@ -265,15 +208,6 @@ public:
   virtual void enterExpression(BlazeParser::ExpressionContext *ctx) = 0;
   virtual void exitExpression(BlazeParser::ExpressionContext *ctx) = 0;
 
-  virtual void enterLambdaExpression(BlazeParser::LambdaExpressionContext *ctx) = 0;
-  virtual void exitLambdaExpression(BlazeParser::LambdaExpressionContext *ctx) = 0;
-
-  virtual void enterLambdaParameters(BlazeParser::LambdaParametersContext *ctx) = 0;
-  virtual void exitLambdaParameters(BlazeParser::LambdaParametersContext *ctx) = 0;
-
-  virtual void enterLambdaBody(BlazeParser::LambdaBodyContext *ctx) = 0;
-  virtual void exitLambdaBody(BlazeParser::LambdaBodyContext *ctx) = 0;
-
   virtual void enterPrimary(BlazeParser::PrimaryContext *ctx) = 0;
   virtual void exitPrimary(BlazeParser::PrimaryContext *ctx) = 0;
 
@@ -298,15 +232,6 @@ public:
   virtual void enterExplicitGenericInvocation(BlazeParser::ExplicitGenericInvocationContext *ctx) = 0;
   virtual void exitExplicitGenericInvocation(BlazeParser::ExplicitGenericInvocationContext *ctx) = 0;
 
-  virtual void enterTypeArgumentsOrDiamond(BlazeParser::TypeArgumentsOrDiamondContext *ctx) = 0;
-  virtual void exitTypeArgumentsOrDiamond(BlazeParser::TypeArgumentsOrDiamondContext *ctx) = 0;
-
-  virtual void enterNonWildcardTypeArgumentsOrDiamond(BlazeParser::NonWildcardTypeArgumentsOrDiamondContext *ctx) = 0;
-  virtual void exitNonWildcardTypeArgumentsOrDiamond(BlazeParser::NonWildcardTypeArgumentsOrDiamondContext *ctx) = 0;
-
-  virtual void enterNonWildcardTypeArguments(BlazeParser::NonWildcardTypeArgumentsContext *ctx) = 0;
-  virtual void exitNonWildcardTypeArguments(BlazeParser::NonWildcardTypeArgumentsContext *ctx) = 0;
-
   virtual void enterTypeList(BlazeParser::TypeListContext *ctx) = 0;
   virtual void exitTypeList(BlazeParser::TypeListContext *ctx) = 0;
 
@@ -315,9 +240,6 @@ public:
 
   virtual void enterPrimitiveType(BlazeParser::PrimitiveTypeContext *ctx) = 0;
   virtual void exitPrimitiveType(BlazeParser::PrimitiveTypeContext *ctx) = 0;
-
-  virtual void enterTypeArguments(BlazeParser::TypeArgumentsContext *ctx) = 0;
-  virtual void exitTypeArguments(BlazeParser::TypeArgumentsContext *ctx) = 0;
 
   virtual void enterSuperSuffix(BlazeParser::SuperSuffixContext *ctx) = 0;
   virtual void exitSuperSuffix(BlazeParser::SuperSuffixContext *ctx) = 0;

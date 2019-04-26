@@ -49,18 +49,6 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitTypeParameters(BlazeParser::TypeParametersContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitTypeParameter(BlazeParser::TypeParameterContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitTypeBound(BlazeParser::TypeBoundContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitEnumDeclaration(BlazeParser::EnumDeclarationContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -109,14 +97,6 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitGenericMethodDeclaration(BlazeParser::GenericMethodDeclarationContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitGenericConstructorDeclaration(BlazeParser::GenericConstructorDeclarationContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitConstructorDeclaration(BlazeParser::ConstructorDeclarationContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -146,10 +126,6 @@ public:
   }
 
   virtual antlrcpp::Any visitInterfaceMethodModifier(BlazeParser::InterfaceMethodModifierContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitGenericInterfaceMethodDeclaration(BlazeParser::GenericInterfaceMethodDeclarationContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -214,58 +190,6 @@ public:
   }
 
   virtual antlrcpp::Any visitFloatLiteral(BlazeParser::FloatLiteralContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitAnnotation(BlazeParser::AnnotationContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitElementValuePairs(BlazeParser::ElementValuePairsContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitElementValuePair(BlazeParser::ElementValuePairContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitElementValue(BlazeParser::ElementValueContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitElementValueArrayInitializer(BlazeParser::ElementValueArrayInitializerContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitAnnotationTypeDeclaration(BlazeParser::AnnotationTypeDeclarationContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitAnnotationTypeBody(BlazeParser::AnnotationTypeBodyContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitAnnotationTypeElementDeclaration(BlazeParser::AnnotationTypeElementDeclarationContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitAnnotationTypeElementRest(BlazeParser::AnnotationTypeElementRestContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitAnnotationMethodOrConstantRest(BlazeParser::AnnotationMethodOrConstantRestContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitAnnotationMethodRest(BlazeParser::AnnotationMethodRestContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitAnnotationConstantRest(BlazeParser::AnnotationConstantRestContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitDefaultValue(BlazeParser::DefaultValueContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -349,18 +273,6 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitLambdaExpression(BlazeParser::LambdaExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitLambdaParameters(BlazeParser::LambdaParametersContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitLambdaBody(BlazeParser::LambdaBodyContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitPrimary(BlazeParser::PrimaryContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -393,18 +305,6 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitTypeArgumentsOrDiamond(BlazeParser::TypeArgumentsOrDiamondContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitNonWildcardTypeArgumentsOrDiamond(BlazeParser::NonWildcardTypeArgumentsOrDiamondContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitNonWildcardTypeArguments(BlazeParser::NonWildcardTypeArgumentsContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitTypeList(BlazeParser::TypeListContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -414,10 +314,6 @@ public:
   }
 
   virtual antlrcpp::Any visitPrimitiveType(BlazeParser::PrimitiveTypeContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitTypeArguments(BlazeParser::TypeArgumentsContext *ctx) override {
     return visitChildren(ctx);
   }
 
