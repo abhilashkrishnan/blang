@@ -9,9 +9,11 @@
 #include <fstream>
 #include "types.h"
 #include "constants.h"
+#include "ObjectHeap.h"
+#include "ClassHeap.h"
 
-class ClassHeap;
-class ObjectHeap;
+//class ClassHeap;
+//class ObjectHeap;
 
 struct cp_info {
     u1 tag;
