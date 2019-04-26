@@ -26,6 +26,7 @@ class FilePathManager {
     public:
         FilePathManager(void);
         ~FilePathManager();
+        bool IsPathExist(const string &s);
         BOOL GetAbsolutePath(string strRelativePath, string& strAbsolutePath);
         string GetCurrentWorkingDir( void );
 };
