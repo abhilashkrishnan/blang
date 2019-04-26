@@ -1,30 +1,42 @@
 /*
-    Copyright 2019 Abhilash Krishnan
+ [The "BSD licence"]
+ Copyright (c) 2013 Terence Parr, Sam Harwell
+ Copyright (c) 2017 Ivan Kochurkin (upgrade to Java 8)
+ All rights reserved.
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. The name of the author may not be used to endorse or promote products
+    derived from this software without specific prior written permission.
 
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+ IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+parser grammar JavaParser;
 
-parser grammar BlazeParser;
-
-options { tokenVocab=BlazeLexer; }
+options { tokenVocab=JavaLexer; }
 
 compilationUnit
     : packageDeclaration? importDeclaration* typeDeclaration* EOF
     ;
 
 packageDeclaration
-    : PACKAGE qualifiedName ';'
+    : annotation* PACKAGE qualifiedName ';'
     ;
 
 importDeclaration
@@ -33,7 +45,7 @@ importDeclaration
 
 typeDeclaration
     : classOrInterfaceModifier*
-      (classDeclaration | enumDeclaration | interfaceDeclaration)
+      (classDeclaration | enumDeclaration | interfaceDeclaration | annotationTypeDeclaration)
     | ';'
     ;
 
@@ -46,23 +58,38 @@ modifier
     ;
 
 classOrInterfaceModifier
-    : PUBLIC
+    : annotation
+    | PUBLIC
     | PROTECTED
     | PRIVATE
     | STATIC
     | ABSTRACT
     | FINAL    // FINAL for class only -- does not apply to interfaces
+    | STRICTFP
     ;
 
 variableModifier
     : FINAL
+    | annotation
     ;
 
 classDeclaration
-    : CLASS IDENTIFIER
+    : CLASS IDENTIFIER typeParameters?
       (EXTENDS typeType)?
       (IMPLEMENTS typeList)?
       classBody
+    ;
+
+typeParameters
+    : '<' typeParameter (',' typeParameter)* '>'
+    ;
+
+typeParameter
+    : annotation* IDENTIFIER (EXTENDS typeBound)?
+    ;
+
+typeBound
+    : typeType ('&' typeType)*
     ;
 
 enumDeclaration
@@ -74,7 +101,7 @@ enumConstants
     ;
 
 enumConstant
-    : IDENTIFIER arguments? classBody?
+    : annotation* IDENTIFIER arguments? classBody?
     ;
 
 enumBodyDeclarations
@@ -82,7 +109,7 @@ enumBodyDeclarations
     ;
 
 interfaceDeclaration
-    : INTERFACE IDENTIFIER (EXTENDS typeList)? interfaceBody
+    : INTERFACE IDENTIFIER typeParameters? (EXTENDS typeList)? interfaceBody
     ;
 
 classBody
@@ -101,9 +128,12 @@ classBodyDeclaration
 
 memberDeclaration
     : methodDeclaration
+    | genericMethodDeclaration
     | fieldDeclaration
     | constructorDeclaration
+    | genericConstructorDeclaration
     | interfaceDeclaration
+    | annotationTypeDeclaration
     | classDeclaration
     | enumDeclaration
     ;
@@ -129,6 +159,14 @@ typeTypeOrVoid
     | VOID
     ;
 
+genericMethodDeclaration
+    : typeParameters methodDeclaration
+    ;
+
+genericConstructorDeclaration
+    : typeParameters constructorDeclaration
+    ;
+
 constructorDeclaration
     : IDENTIFIER formalParameters (THROWS qualifiedNameList)? constructorBody=block
     ;
@@ -145,7 +183,9 @@ interfaceBodyDeclaration
 interfaceMemberDeclaration
     : constDeclaration
     | interfaceMethodDeclaration
+    | genericInterfaceMethodDeclaration
     | interfaceDeclaration
+    | annotationTypeDeclaration
     | classDeclaration
     | enumDeclaration
     ;
@@ -159,16 +199,24 @@ constantDeclarator
     ;
 
 // see matching of [] comment in methodDeclaratorRest
+// methodBody from Java8
 interfaceMethodDeclaration
-    : interfaceMethodModifier* (typeTypeOrVoid)
+    : interfaceMethodModifier* (typeTypeOrVoid | typeParameters annotation* typeTypeOrVoid)
       IDENTIFIER formalParameters ('[' ']')* (THROWS qualifiedNameList)? methodBody
     ;
 
+// Java8
 interfaceMethodModifier
-    : PUBLIC
+    : annotation
+    | PUBLIC
     | ABSTRACT
     | DEFAULT
     | STATIC
+    | STRICTFP
+    ;
+
+genericInterfaceMethodDeclaration
+    : typeParameters interfaceMethodDeclaration
     ;
 
 variableDeclarators
@@ -193,7 +241,7 @@ arrayInitializer
     ;
 
 classOrInterfaceType
-    : IDENTIFIER ('.' IDENTIFIER)*
+    : IDENTIFIER typeArguments? ('.' IDENTIFIER typeArguments?)*
     ;
 
 typeArgument
@@ -245,6 +293,68 @@ integerLiteral
 floatLiteral
     : FLOAT_LITERAL
     | HEX_FLOAT_LITERAL
+    ;
+
+// ANNOTATIONS
+
+annotation
+    : '@' qualifiedName ('(' ( elementValuePairs | elementValue )? ')')?
+    ;
+
+elementValuePairs
+    : elementValuePair (',' elementValuePair)*
+    ;
+
+elementValuePair
+    : IDENTIFIER '=' elementValue
+    ;
+
+elementValue
+    : expression
+    | annotation
+    | elementValueArrayInitializer
+    ;
+
+elementValueArrayInitializer
+    : '{' (elementValue (',' elementValue)*)? (',')? '}'
+    ;
+
+annotationTypeDeclaration
+    : '@' INTERFACE IDENTIFIER annotationTypeBody
+    ;
+
+annotationTypeBody
+    : '{' (annotationTypeElementDeclaration)* '}'
+    ;
+
+annotationTypeElementDeclaration
+    : modifier* annotationTypeElementRest
+    | ';' // this is not allowed by the grammar, but apparently allowed by the actual compiler
+    ;
+
+annotationTypeElementRest
+    : typeType annotationMethodOrConstantRest ';'
+    | classDeclaration ';'?
+    | interfaceDeclaration ';'?
+    | enumDeclaration ';'?
+    | annotationTypeDeclaration ';'?
+    ;
+
+annotationMethodOrConstantRest
+    : annotationMethodRest
+    | annotationConstantRest
+    ;
+
+annotationMethodRest
+    : IDENTIFIER '(' ')' defaultValue?
+    ;
+
+annotationConstantRest
+    : variableDeclarators
+    ;
+
+defaultValue
+    : DEFAULT elementValue
     ;
 
 // STATEMENTS / BLOCKS
@@ -361,7 +471,7 @@ expression
       ( IDENTIFIER
       | methodCall
       | THIS
-      | NEW innerCreator
+      | NEW nonWildcardTypeArguments? innerCreator
       | SUPER superSuffix
       | explicitGenericInvocation
       )
@@ -387,6 +497,30 @@ expression
     | <assoc=right> expression
       bop=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=')
       expression
+    | lambdaExpression // Java8
+
+    // Java 8 methodReference
+    | expression '::' typeArguments? IDENTIFIER
+    | typeType '::' (typeArguments? IDENTIFIER | NEW)
+    | classType '::' typeArguments? NEW
+    ;
+
+// Java8
+lambdaExpression
+    : lambdaParameters '->' lambdaBody
+    ;
+
+// Java8
+lambdaParameters
+    : IDENTIFIER
+    | '(' formalParameterList? ')'
+    | '(' IDENTIFIER (',' IDENTIFIER)* ')'
+    ;
+
+// Java8
+lambdaBody
+    : expression
+    | block
     ;
 
 primary
@@ -396,24 +530,25 @@ primary
     | literal
     | IDENTIFIER
     | typeTypeOrVoid '.' CLASS
+    | nonWildcardTypeArguments (explicitGenericInvocationSuffix | THIS arguments)
     ;
 
 classType
-    : (classOrInterfaceType '.')? IDENTIFIER?
+    : (classOrInterfaceType '.')? annotation* IDENTIFIER typeArguments?
     ;
 
 creator
-    : createdName classCreatorRest
+    : nonWildcardTypeArguments createdName classCreatorRest
     | createdName (arrayCreatorRest | classCreatorRest)
     ;
 
 createdName
-    : IDENTIFIER ('.' IDENTIFIER)*
+    : IDENTIFIER typeArgumentsOrDiamond? ('.' IDENTIFIER typeArgumentsOrDiamond?)*
     | primitiveType
     ;
 
 innerCreator
-    : IDENTIFIER classCreatorRest
+    : IDENTIFIER nonWildcardTypeArgumentsOrDiamond? classCreatorRest
     ;
 
 arrayCreatorRest
@@ -425,7 +560,21 @@ classCreatorRest
     ;
 
 explicitGenericInvocation
-    : explicitGenericInvocationSuffix
+    : nonWildcardTypeArguments explicitGenericInvocationSuffix
+    ;
+
+typeArgumentsOrDiamond
+    : '<' '>'
+    | typeArguments
+    ;
+
+nonWildcardTypeArgumentsOrDiamond
+    : '<' '>'
+    | nonWildcardTypeArguments
+    ;
+
+nonWildcardTypeArguments
+    : '<' typeList '>'
     ;
 
 typeList
@@ -433,7 +582,7 @@ typeList
     ;
 
 typeType
-    : (classOrInterfaceType | primitiveType) ('[' ']')*
+    : annotation? (classOrInterfaceType | primitiveType) ('[' ']')*
     ;
 
 primitiveType
@@ -445,6 +594,10 @@ primitiveType
     | LONG
     | FLOAT
     | DOUBLE
+    ;
+
+typeArguments
+    : '<' typeArgument (',' typeArgument)* '>'
     ;
 
 superSuffix
